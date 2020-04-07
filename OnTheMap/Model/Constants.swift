@@ -13,4 +13,7 @@ struct K {
         static let mainMap = "MainShowMapPage"
         static let editMyPin = "EditMyPinPage"
     }
+    struct TableView {
+        static let reuseableCell = "Cell"
+    }
 }
