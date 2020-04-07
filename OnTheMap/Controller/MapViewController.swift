@@ -35,6 +35,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func postMyLocation(_ sender: UIBarButtonItem) {
+        showLoginFailure("You Already posted Student location are you sure to replace it ?")
+    }
+    
+    func showLoginFailure(_ message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (action) in
+            print("Overwrite action")
+        }
+        alertVC.addAction(actionOverwrite)
+        alertVC.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        show(alertVC, sender: nil)
+    }
+    
+    
     @IBAction func refreshStudentLocationButtonPressed(_ sender: UIBarButtonItem) {
         pinStudentOnMap()
     }

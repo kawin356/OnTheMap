@@ -22,6 +22,8 @@
 		43CA3A3B243C5E2C000C9C9D /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A3A243C5E2C000C9C9D /* StudentLocation.swift */; };
 		43CA3A3D243C7649000C9C9D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A3C243C7649000C9C9D /* TableViewController.swift */; };
 		43CA3A40243C7751000C9C9D /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A3F243C7751000C9C9D /* StudentModel.swift */; };
+		43CA3A42243CE8B7000C9C9D /* StudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A41243CE8B7000C9C9D /* StudentLocationRequest.swift */; };
+		43CA3A46243CF5F6000C9C9D /* PinLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		43CA3A3A243C5E2C000C9C9D /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		43CA3A3C243C7649000C9C9D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		43CA3A3F243C7751000C9C9D /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
+		43CA3A41243CE8B7000C9C9D /* StudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationRequest.swift; sourceTree = "<group>"; };
+		43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinLocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				43CA3A19243C3CC8000C9C9D /* LoginViewController.swift */,
 				43CA3A38243C5C2D000C9C9D /* MapViewController.swift */,
 				43CA3A3C243C7649000C9C9D /* TableViewController.swift */,
+				43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				43CA3A32243C4716000C9C9D /* LoginRequest.swift */,
+				43CA3A41243CE8B7000C9C9D /* StudentLocationRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -216,8 +222,10 @@
 				43CA3A1A243C3CC8000C9C9D /* LoginViewController.swift in Sources */,
 				43CA3A40243C7751000C9C9D /* StudentModel.swift in Sources */,
 				43CA3A16243C3CC8000C9C9D /* AppDelegate.swift in Sources */,
+				43CA3A46243CF5F6000C9C9D /* PinLocationViewController.swift in Sources */,
 				43CA3A31243C45E0000C9C9D /* OTMClient.swift in Sources */,
 				43CA3A37243C59E0000C9C9D /* OTMResponse.swift in Sources */,
+				43CA3A42243CE8B7000C9C9D /* StudentLocationRequest.swift in Sources */,
 				43CA3A39243C5C2D000C9C9D /* MapViewController.swift in Sources */,
 				43CA3A33243C4716000C9C9D /* LoginRequest.swift in Sources */,
 				43CA3A3D243C7649000C9C9D /* TableViewController.swift in Sources */,
