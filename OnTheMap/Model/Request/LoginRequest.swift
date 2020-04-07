@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  LoginRequest.swift
 //  OnTheMap
 //
 //  Created by Kittikawin Sontinarakul on 7/4/2563 BE.
@@ -8,9 +8,7 @@
 
 import Foundation
 
-struct K {
-    struct Segue {
-        static let mainMap = "MainShowMapPage"
-        static let editMyPin = "EditMyPinPage"
-    }
+struct LoginRequest: Codable {
+    let username: String
+    let password: String
 }

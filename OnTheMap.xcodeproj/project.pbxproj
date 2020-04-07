@@ -14,6 +14,12 @@
 		43CA3A1F243C3CCB000C9C9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CA3A1E243C3CCB000C9C9D /* Assets.xcassets */; };
 		43CA3A22243C3CCB000C9C9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43CA3A20243C3CCB000C9C9D /* LaunchScreen.storyboard */; };
 		43CA3A2D243C4137000C9C9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A2C243C4137000C9C9D /* Constants.swift */; };
+		43CA3A31243C45E0000C9C9D /* OTMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A30243C45E0000C9C9D /* OTMClient.swift */; };
+		43CA3A33243C4716000C9C9D /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A32243C4716000C9C9D /* LoginRequest.swift */; };
+		43CA3A35243C478C000C9C9D /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A34243C478C000C9C9D /* LoginResponse.swift */; };
+		43CA3A37243C59E0000C9C9D /* OTMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A36243C59E0000C9C9D /* OTMResponse.swift */; };
+		43CA3A39243C5C2D000C9C9D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A38243C5C2D000C9C9D /* MapViewController.swift */; };
+		43CA3A3B243C5E2C000C9C9D /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A3A243C5E2C000C9C9D /* StudentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,12 @@
 		43CA3A21243C3CCB000C9C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43CA3A23243C3CCB000C9C9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43CA3A2C243C4137000C9C9D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		43CA3A30243C45E0000C9C9D /* OTMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMClient.swift; sourceTree = "<group>"; };
+		43CA3A32243C4716000C9C9D /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		43CA3A34243C478C000C9C9D /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		43CA3A36243C59E0000C9C9D /* OTMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMResponse.swift; sourceTree = "<group>"; };
+		43CA3A38243C5C2D000C9C9D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		43CA3A3A243C5E2C000C9C9D /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +84,7 @@
 				43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */,
 				43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */,
 				43CA3A19243C3CC8000C9C9D /* LoginViewController.swift */,
+				43CA3A38243C5C2D000C9C9D /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -89,9 +102,30 @@
 		43CA3A2B243C3D03000C9C9D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				43CA3A30243C45E0000C9C9D /* OTMClient.swift */,
+				43CA3A2E243C4596000C9C9D /* Request */,
+				43CA3A2F243C459E000C9C9D /* Responses */,
 				43CA3A2C243C4137000C9C9D /* Constants.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		43CA3A2E243C4596000C9C9D /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				43CA3A32243C4716000C9C9D /* LoginRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		43CA3A2F243C459E000C9C9D /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				43CA3A34243C478C000C9C9D /* LoginResponse.swift */,
+				43CA3A36243C59E0000C9C9D /* OTMResponse.swift */,
+				43CA3A3A243C5E2C000C9C9D /* StudentLocation.swift */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,8 +201,14 @@
 			files = (
 				43CA3A1A243C3CC8000C9C9D /* LoginViewController.swift in Sources */,
 				43CA3A16243C3CC8000C9C9D /* AppDelegate.swift in Sources */,
+				43CA3A31243C45E0000C9C9D /* OTMClient.swift in Sources */,
+				43CA3A37243C59E0000C9C9D /* OTMResponse.swift in Sources */,
+				43CA3A39243C5C2D000C9C9D /* MapViewController.swift in Sources */,
+				43CA3A33243C4716000C9C9D /* LoginRequest.swift in Sources */,
 				43CA3A18243C3CC8000C9C9D /* SceneDelegate.swift in Sources */,
 				43CA3A2D243C4137000C9C9D /* Constants.swift in Sources */,
+				43CA3A3B243C5E2C000C9C9D /* StudentLocation.swift in Sources */,
+				43CA3A35243C478C000C9C9D /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

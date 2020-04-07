@@ -10,11 +10,28 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        OTMClient.login(username: userNameTextField.text ?? "",
+                        password: passwordTextField.text ?? "",
+             completion: handerLogin(success:error:))
+    }
+    
+    func handerLogin(success: Bool, error: Error?) {
+        if success {
+            print("success")
+            performSegue(withIdentifier: K.Segue.mainMap, sender: nil)
+        } else {
+            print("error")
+        }
+    }
+    
 }
 
