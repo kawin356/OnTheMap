@@ -9,6 +9,13 @@
 import Foundation
 
 struct K {
+    struct NotificationCenter {
+        static let updateName = "updatePin"
+    }
+    struct MyName {
+        static let firstName = "Kawin"
+        static let lastName = "S"
+    }
     struct Segue {
         static let mainMap = "MainShowMapPage"
         static let editMyPin = "EditMyPinPage"
@@ -22,5 +29,7 @@ struct K {
         static let editMyPin = "EditMyPinPage"
         static let showDetail = "ShowDetailViewController"
         static let showMapDetail = "MapViewDetailViewController"
+        static let mainShowMap = "MainShowMapPage"
+        static let rootView = "RootView"
     }
 }

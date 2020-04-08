@@ -12,12 +12,22 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    let mapViewDelegate = MapViewDelegate()
         
     override func viewDidLoad() {
+        
+        self.mapView.delegate = mapViewDelegate
         super.viewDidLoad()
-        if StudentModel.student.count == 0 {
-            OTMClient.getStudentLocation(completion: handlerStudentLocation(success:error:))
+        updateRequest()
+    }
+    
+    func updateRequest() {
+        if !mapView.annotations.isEmpty {
+            mapView.removeAnnotations(mapView.annotations)
         }
+        
+        OTMClient.getStudentLocation(completion: handlerStudentLocation(success:error:))
     }
     
     func handlerStudentLocation(success: Bool, error: Error?) {
@@ -26,29 +36,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func location() {
-//        let request = MKLocalSearch.Request()
-//        request.naturalLanguageQuery =
-//        request.region = mapView.region
-//        let search = MKLocalSearch(request: request)
-//        search.start { response, _ in
-//            guard let response = response else {
-//                return
-//            }
-//            self.matchingItems = response.mapItems
-//            self.tableView.reloadData()
-//        }
-    }
-    
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
-    
+        
     func pinStudentOnMap() {
         
         var annotations = [MKPointAnnotation]()
+        
+
         
         for data in StudentModel.student {
             
@@ -79,30 +75,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.addAnnotations(annotations)
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "pin"
-        
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        else {
-            pinView!.annotation = annotation
-        }
-        
-        return pinView
-    }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle! {
-                app.open(URL(string: toOpen)!)
-            }
-        }
-    }
 }

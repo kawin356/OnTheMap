@@ -19,24 +19,27 @@ class TabbarViewController: UITabBarController {
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
-//        let vc = selectedViewController as! MapViewController
-//        vc.pinStudentOnMap()
+        //        let vc = selectedViewController as! MapViewController
+        //        vc.pinStudentOnMap()
     }
     
     @IBAction func addLocationButtonPressed(_ sender: UIBarButtonItem) {
-        showAlert("You Already posted Student location are you sure to replace it ?")
-        if let vc = storyboard?.instantiateViewController(withIdentifier: K.Storyboard.editMyPin) {
-            present(vc, animated: true, completion: nil)
+        let textShow = "You Already posted Student location are you sure to replace it ?"
+        showAlert(textShow) {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.editMyPin) {
+                self.present(vc, animated: true, completion: nil)
+            }
         }
+        
     }
     
-    func showAlert(_ message: String) {
+    func showAlert(_ message: String, completion: @escaping () -> Void) {
         let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (action) in
-            print("Overwrite action")
+            completion()
         }
         alertVC.addAction(actionOverwrite)
         alertVC.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        show(alertVC, sender: nil)
+        present(alertVC, animated: true, completion: nil)
     }
 }

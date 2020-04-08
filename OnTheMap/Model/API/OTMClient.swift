@@ -13,6 +13,7 @@ class OTMClient {
     struct Auth {
         static var accontKey: String = ""
         static var session: String = ""
+        static var objectId: String = ""
     }
     
     enum Endpoint {
@@ -20,11 +21,13 @@ class OTMClient {
         
         case login
         case getStudentLocation
+        case createNewlocation
         
         var stringValue: String {
             switch self {
             case .login: return Endpoint.baseURL + "/session"
-            case .getStudentLocation: return Endpoint.baseURL + "/StudentLocation"
+            case .getStudentLocation: return Endpoint.baseURL + "/StudentLocation?order=-updatedAt"
+            case .createNewlocation: return Endpoint.baseURL + "/StudentLocation"
             }
         }
         
@@ -60,17 +63,20 @@ class OTMClient {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try! JSONEncoder().encode(["udacity":body])
+        request.httpBody = try! JSONEncoder().encode(body)
+        
+        
+        print(String(data: request.httpBody!, encoding: .utf8)!)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            let newData = data.subdata(in: 5..<data.count)
+            print(String(data: data, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(ResponseType.self, from: newData)
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
                     completion(responseObject,nil)
                 }
@@ -83,26 +89,52 @@ class OTMClient {
         task.resume()
     }
     
-    class func createNewStudentLocation() {
-
-    }
-    
-    class func login(username: String, password: String, completion: @escaping (Bool,Error?) -> Void) {
-        let body = LoginRequest(username: username, password: password)
-
-        taskForPOSTRequest(url: Endpoint.login.url, responseType: LoginResponse.self, body: body) { (response, error) in
-            if let responseObject = response {
-                if responseObject.account.registered {
-                    print(responseObject.account.key)
-                    print(responseObject.session.id)
-                    Auth.accontKey = responseObject.account.key
-                    Auth.session = responseObject.session.id
-                        completion(true,nil)
-                }
+    class func createNewStudentLocation(mapString: String, mediaURL: String, latitude: Double, longtitude: Double, completion: @escaping (Bool,Error?) -> Void) {
+        let body = StudentLocationRequest(uniqueKey: Auth.accontKey, firstName: K.MyName.firstName, lastName: K.MyName.lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longtitude)
+        
+        taskForPOSTRequest(url: Endpoint.createNewlocation.url, responseType: CreateNewLocationResponse.self, body: body) { (response, error) in
+            if let response = response {
+                Auth.objectId = response.objectId
+                completion(true,nil)
             } else {
                 completion(false,error)
             }
         }
+    }
+    
+    
+    class func login(username: String, password: String, completion: @escaping (Bool,Error?) -> Void) {
+        
+        var request = URLRequest(url: Endpoint.login.url)
+        let body = LoginRequest(username: username, password: password)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONEncoder().encode(["udacity":body])
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                completion(false, error)
+                return
+            }
+            
+            let newData = data.subdata(in: 5..<data.count)
+            
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(LoginResponse.self, from: newData)
+                Auth.accontKey = responseObject.account.key
+                Auth.session = responseObject.session.id
+                DispatchQueue.main.async {
+                    completion(true,nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(false,error)
+                }
+            }
+        }
+        task.resume()
+        
     }
     
     class func getStudentLocation(completion: @escaping (Bool,Error?) -> Void) {

@@ -35,7 +35,7 @@ class PinLocationViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segue.submitPin {
             let VC = segue.destination as! SubmitPinViewController
-            VC.newLocation = newLocationTextField.text
+            VC.newLocation = newLocationTextField.text!
         }
     }
     

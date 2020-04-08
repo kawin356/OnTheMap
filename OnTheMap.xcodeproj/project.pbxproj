@@ -10,6 +10,9 @@
 		43997A72243DB3FB00008454 /* MyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A71243DB3FB00008454 /* MyLocation.swift */; };
 		43997A74243DC37A00008454 /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A73243DC37A00008454 /* ShowDetailViewController.swift */; };
 		43997A76243DC4A200008454 /* MapViewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A75243DC4A200008454 /* MapViewDetailViewController.swift */; };
+		439D09CF243E36440023D6F4 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D09CE243E36440023D6F4 /* MapViewDelegate.swift */; };
+		439D09D1243E40660023D6F4 /* CreateNewLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D09D0243E40660023D6F4 /* CreateNewLocationResponse.swift */; };
+		439D09DA243E601A0023D6F4 /* NotificationCenterUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D09D9243E601A0023D6F4 /* NotificationCenterUpdate.swift */; };
 		43CA3A16243C3CC8000C9C9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */; };
 		43CA3A18243C3CC8000C9C9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */; };
 		43CA3A1A243C3CC8000C9C9D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A19243C3CC8000C9C9D /* LoginViewController.swift */; };
@@ -35,6 +38,9 @@
 		43997A71243DB3FB00008454 /* MyLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocation.swift; sourceTree = "<group>"; };
 		43997A73243DC37A00008454 /* ShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		43997A75243DC4A200008454 /* MapViewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDetailViewController.swift; sourceTree = "<group>"; };
+		439D09CE243E36440023D6F4 /* MapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
+		439D09D0243E40660023D6F4 /* CreateNewLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewLocationResponse.swift; sourceTree = "<group>"; };
+		439D09D9243E601A0023D6F4 /* NotificationCenterUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterUpdate.swift; sourceTree = "<group>"; };
 		43CA3A12243C3CC8000C9C9D /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		439D09D2243E449F0023D6F4 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				439D09CE243E36440023D6F4 /* MapViewDelegate.swift */,
+				43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */,
+				43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		439D09D3243E44CF0023D6F4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				43CA3A30243C45E0000C9C9D /* OTMClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		43CA3A09243C3CC8000C9C9D = {
 			isa = PBXGroup;
 			children = (
@@ -99,16 +123,16 @@
 		43CA3A29243C3CF2000C9C9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */,
-				43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */,
-				43CA3A49243D9E71000C9C9D /* TabbarViewController.swift */,
+				439D09D2243E449F0023D6F4 /* Delegate */,
 				43CA3A19243C3CC8000C9C9D /* LoginViewController.swift */,
+				43CA3A49243D9E71000C9C9D /* TabbarViewController.swift */,
 				43CA3A38243C5C2D000C9C9D /* MapViewController.swift */,
 				43CA3A3C243C7649000C9C9D /* TableViewController.swift */,
-				43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */,
-				43CA3A47243D9027000C9C9D /* SubmitPinViewController.swift */,
 				43997A73243DC37A00008454 /* ShowDetailViewController.swift */,
 				43997A75243DC4A200008454 /* MapViewDetailViewController.swift */,
+				43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */,
+				43CA3A47243D9027000C9C9D /* SubmitPinViewController.swift */,
+				439D09D9243E601A0023D6F4 /* NotificationCenterUpdate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -127,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				43CA3A3E243C7730000C9C9D /* Data */,
-				43CA3A30243C45E0000C9C9D /* OTMClient.swift */,
+				439D09D3243E44CF0023D6F4 /* API */,
 				43CA3A2E243C4596000C9C9D /* Request */,
 				43CA3A2F243C459E000C9C9D /* Responses */,
 			);
@@ -149,6 +173,7 @@
 				43CA3A34243C478C000C9C9D /* LoginResponse.swift */,
 				43CA3A36243C59E0000C9C9D /* OTMResponse.swift */,
 				43CA3A3A243C5E2C000C9C9D /* StudentLocation.swift */,
+				439D09D0243E40660023D6F4 /* CreateNewLocationResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -250,9 +275,12 @@
 				43CA3A48243D9027000C9C9D /* SubmitPinViewController.swift in Sources */,
 				43997A76243DC4A200008454 /* MapViewDetailViewController.swift in Sources */,
 				43997A74243DC37A00008454 /* ShowDetailViewController.swift in Sources */,
+				439D09CF243E36440023D6F4 /* MapViewDelegate.swift in Sources */,
 				43CA3A2D243C4137000C9C9D /* Constants.swift in Sources */,
 				43CA3A3B243C5E2C000C9C9D /* StudentLocation.swift in Sources */,
 				43CA3A35243C478C000C9C9D /* LoginResponse.swift in Sources */,
+				439D09DA243E601A0023D6F4 /* NotificationCenterUpdate.swift in Sources */,
+				439D09D1243E40660023D6F4 /* CreateNewLocationResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

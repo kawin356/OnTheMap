@@ -15,7 +15,7 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var mapView: MKMapView!
     
     var pin:MKMapItem?
-    var newLocation: String?
+    var newLocation: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,38 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        let url = urlTextField.text
+        let lat = mapView.annotations[0].coordinate.latitude
+        let long = mapView.annotations[0].coordinate.longitude
         
+        if let mediaURl = urlTextField.text {
+            OTMClient.createNewStudentLocation(mapString: newLocation, mediaURL: mediaURl, latitude: lat, longtitude: long, completion: handlerCreateNew(success:error:))
+        } else {
+            let message = "Please enter your URL!"
+            showAlert(message: message)
+        }
+    }
+    
+    func showAlert(message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let actionOverwrite = UIAlertAction(title: "OK", style: .default)
+        alertVC.addAction(actionOverwrite)
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func handlerCreateNew(success: Bool, error: Error?) {
+        if success {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.rootView) {
+                NotificationCenter.default.post(name: Notification.Name(K.NotificationCenter.updateName), object: nil)
+                self.present(vc, animated: true, completion: nil)
+            }
+        } else {
+            showAlert(message: "Something goes wrong")
+        }
+    }
+    
+    func setNewLocation(location: MKPointAnnotation) {
+       // newStudentLocation?.longitude = 0.0
+           // location.coordinate.longitude
     }
     
     func updatePinMapView() {
