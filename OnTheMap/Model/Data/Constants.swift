@@ -12,8 +12,12 @@ struct K {
     struct Segue {
         static let mainMap = "MainShowMapPage"
         static let editMyPin = "EditMyPinPage"
+        static let submitPin = "SubmitPinPage"
     }
     struct TableView {
         static let reuseableCell = "Cell"
+    }
+    struct Storyboard {
+        static let editMyPin = "EditMyPinPage"
     }
 }

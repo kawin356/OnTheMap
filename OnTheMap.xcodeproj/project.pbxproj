@@ -24,6 +24,8 @@
 		43CA3A40243C7751000C9C9D /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A3F243C7751000C9C9D /* StudentModel.swift */; };
 		43CA3A42243CE8B7000C9C9D /* StudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A41243CE8B7000C9C9D /* StudentLocationRequest.swift */; };
 		43CA3A46243CF5F6000C9C9D /* PinLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */; };
+		43CA3A48243D9027000C9C9D /* SubmitPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A47243D9027000C9C9D /* SubmitPinViewController.swift */; };
+		43CA3A4A243D9E71000C9C9D /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA3A49243D9E71000C9C9D /* TabbarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		43CA3A3F243C7751000C9C9D /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		43CA3A41243CE8B7000C9C9D /* StudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationRequest.swift; sourceTree = "<group>"; };
 		43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinLocationViewController.swift; sourceTree = "<group>"; };
+		43CA3A47243D9027000C9C9D /* SubmitPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPinViewController.swift; sourceTree = "<group>"; };
+		43CA3A49243D9E71000C9C9D /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +95,12 @@
 			children = (
 				43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */,
 				43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */,
+				43CA3A49243D9E71000C9C9D /* TabbarViewController.swift */,
 				43CA3A19243C3CC8000C9C9D /* LoginViewController.swift */,
 				43CA3A38243C5C2D000C9C9D /* MapViewController.swift */,
 				43CA3A3C243C7649000C9C9D /* TableViewController.swift */,
 				43CA3A45243CF5F6000C9C9D /* PinLocationViewController.swift */,
+				43CA3A47243D9027000C9C9D /* SubmitPinViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -116,7 +122,6 @@
 				43CA3A30243C45E0000C9C9D /* OTMClient.swift */,
 				43CA3A2E243C4596000C9C9D /* Request */,
 				43CA3A2F243C459E000C9C9D /* Responses */,
-				43CA3A2C243C4137000C9C9D /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 		43CA3A3E243C7730000C9C9D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				43CA3A2C243C4137000C9C9D /* Constants.swift */,
 				43CA3A3F243C7751000C9C9D /* StudentModel.swift */,
 			);
 			path = Data;
@@ -219,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CA3A4A243D9E71000C9C9D /* TabbarViewController.swift in Sources */,
 				43CA3A1A243C3CC8000C9C9D /* LoginViewController.swift in Sources */,
 				43CA3A40243C7751000C9C9D /* StudentModel.swift in Sources */,
 				43CA3A16243C3CC8000C9C9D /* AppDelegate.swift in Sources */,
@@ -230,6 +237,7 @@
 				43CA3A33243C4716000C9C9D /* LoginRequest.swift in Sources */,
 				43CA3A3D243C7649000C9C9D /* TableViewController.swift in Sources */,
 				43CA3A18243C3CC8000C9C9D /* SceneDelegate.swift in Sources */,
+				43CA3A48243D9027000C9C9D /* SubmitPinViewController.swift in Sources */,
 				43CA3A2D243C4137000C9C9D /* Constants.swift in Sources */,
 				43CA3A3B243C5E2C000C9C9D /* StudentLocation.swift in Sources */,
 				43CA3A35243C478C000C9C9D /* LoginResponse.swift in Sources */,

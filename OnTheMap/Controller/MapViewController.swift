@@ -12,54 +12,45 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
-    var studentData: StudentLocation?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         if StudentModel.student.count == 0 {
-            OTMClient.getStudentLocation(completion: handlerStudentLocation(data:error:))
+            OTMClient.getStudentLocation(completion: handlerStudentLocation(success:error:))
         }
     }
     
-    func handlerStudentLocation(data: StudentLocation?, error: Error?) {
-        if error == nil {
-            guard let data = data else { return }
-            studentData = data
-            StudentModel.student = data.results
+    func handlerStudentLocation(success: Bool, error: Error?) {
+        if success == true {
             pinStudentOnMap()
         }
+    }
+    
+    func location() {
+//        let request = MKLocalSearch.Request()
+//        request.naturalLanguageQuery =
+//        request.region = mapView.region
+//        let search = MKLocalSearch(request: request)
+//        search.start { response, _ in
+//            guard let response = response else {
+//                return
+//            }
+//            self.matchingItems = response.mapItems
+//            self.tableView.reloadData()
+//        }
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func postMyLocation(_ sender: UIBarButtonItem) {
-        showLoginFailure("You Already posted Student location are you sure to replace it ?")
-    }
-    
-    func showLoginFailure(_ message: String) {
-        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (action) in
-            print("Overwrite action")
-        }
-        alertVC.addAction(actionOverwrite)
-        alertVC.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        show(alertVC, sender: nil)
-    }
-    
-    
-    @IBAction func refreshStudentLocationButtonPressed(_ sender: UIBarButtonItem) {
-        pinStudentOnMap()
-    }
+
     
     func pinStudentOnMap() {
         
         var annotations = [MKPointAnnotation]()
         
-        guard let students = studentData?.results else { return }
-        for data in students {
+        for data in StudentModel.student {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.

@@ -83,12 +83,18 @@ class OTMClient {
         task.resume()
     }
     
+    class func createNewStudentLocation() {
+
+    }
+    
     class func login(username: String, password: String, completion: @escaping (Bool,Error?) -> Void) {
         let body = LoginRequest(username: username, password: password)
 
         taskForPOSTRequest(url: Endpoint.login.url, responseType: LoginResponse.self, body: body) { (response, error) in
             if let responseObject = response {
                 if responseObject.account.registered {
+                    print(responseObject.account.key)
+                    print(responseObject.session.id)
                     Auth.accontKey = responseObject.account.key
                     Auth.session = responseObject.session.id
                         completion(true,nil)
@@ -99,12 +105,13 @@ class OTMClient {
         }
     }
     
-    class func getStudentLocation(completion: @escaping (StudentLocation?,Error?) -> Void) {
+    class func getStudentLocation(completion: @escaping (Bool,Error?) -> Void) {
         taskForGETRequest(url: Endpoint.getStudentLocation.url, responseType: StudentLocation.self) { (response, error) in
             if let response = response {
-                completion(response,nil)
+                StudentModel.student = response.results
+                completion(true,nil)
             } else {
-                completion(nil,error)
+                completion(false,error)
             }
         }
     }
