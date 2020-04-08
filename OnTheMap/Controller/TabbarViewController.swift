@@ -19,8 +19,8 @@ class TabbarViewController: UITabBarController {
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
-        let vc = selectedViewController as! MapViewController
-        vc.pinStudentOnMap()
+//        let vc = selectedViewController as! MapViewController
+//        vc.pinStudentOnMap()
     }
     
     @IBAction func addLocationButtonPressed(_ sender: UIBarButtonItem) {

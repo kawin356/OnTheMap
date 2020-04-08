@@ -28,4 +28,12 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: K.Storyboard.showDetail) as! ShowDetailViewController
+        
+        detailVC.selectedStudent = StudentModel.student[indexPath.row]
+        
+        present(detailVC, animated: true, completion: nil)
+    }
 }

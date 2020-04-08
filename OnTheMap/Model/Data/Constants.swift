@@ -13,11 +13,14 @@ struct K {
         static let mainMap = "MainShowMapPage"
         static let editMyPin = "EditMyPinPage"
         static let submitPin = "SubmitPinPage"
+        static let detailUser = "DetailUserPage"
     }
     struct TableView {
         static let reuseableCell = "Cell"
     }
     struct Storyboard {
         static let editMyPin = "EditMyPinPage"
+        static let showDetail = "ShowDetailViewController"
+        static let showMapDetail = "MapViewDetailViewController"
     }
 }

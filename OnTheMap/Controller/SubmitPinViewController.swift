@@ -29,14 +29,12 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     
     func updatePinMapView() {
         let searchRequest = MKLocalSearch.Request()
+        
         searchRequest.naturalLanguageQuery = newLocation
         
         let activeSearch = MKLocalSearch(request: searchRequest)
         
         activeSearch.start { (response, error) in
-            
-        //    activityIndicator.stopAnimating()
-       //     UIApplication.shared.endIgnoringInteractionEvents()
             
             if response == nil
             {
