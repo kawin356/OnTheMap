@@ -22,12 +22,15 @@ class OTMClient {
         case login
         case getStudentLocation
         case createNewlocation
+        case updateLocation(String)
         
         var stringValue: String {
             switch self {
             case .login: return Endpoint.baseURL + "/session"
             case .getStudentLocation: return Endpoint.baseURL + "/StudentLocation?order=-updatedAt"
             case .createNewlocation: return Endpoint.baseURL + "/StudentLocation"
+            case .updateLocation(let objectId): return Endpoint.baseURL + "/StudentLocation/\(objectId)"
+                
             }
         }
         
@@ -59,14 +62,13 @@ class OTMClient {
         task.resume()
     }
     
-    class func taskForPOSTRequest<ResponseType: Decodable,RequestType: Encodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?,Error?) -> Void) {
+    class func taskForPOSTPUTRequest<ResponseType: Decodable,RequestType: Encodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?,Error?) -> Void) {
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = ResponseType.self == updateResponse.self ? "PUT" : "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
-        
-        
-        print(String(data: request.httpBody!, encoding: .utf8)!)
+                
+        //print(String(data: request.httpBody!, encoding: .utf8)!)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
@@ -92,12 +94,24 @@ class OTMClient {
     class func createNewStudentLocation(mapString: String, mediaURL: String, latitude: Double, longtitude: Double, completion: @escaping (Bool,Error?) -> Void) {
         let body = StudentLocationRequest(uniqueKey: Auth.accontKey, firstName: K.MyName.firstName, lastName: K.MyName.lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longtitude)
         
-        taskForPOSTRequest(url: Endpoint.createNewlocation.url, responseType: CreateNewLocationResponse.self, body: body) { (response, error) in
+        taskForPOSTPUTRequest(url: Endpoint.createNewlocation.url, responseType: CreateNewLocationResponse.self, body: body) { (response, error) in
             if let response = response {
                 Auth.objectId = response.objectId
                 completion(true,nil)
             } else {
                 completion(false,error)
+            }
+        }
+    }
+    
+    class func updateStudentLocation(mapString: String, mediaURL: String, latitude: Double, longtitude: Double, completion: @escaping (Bool,Error?) -> Void) {
+        let body = StudentLocationRequest(uniqueKey: Auth.accontKey, firstName: K.MyName.firstName, lastName: K.MyName.lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longtitude)
+        
+        taskForPOSTPUTRequest(url: Endpoint.updateLocation(Auth.objectId).url, responseType: updateResponse.self, body: body) { (response, error) in
+            if let response = response {
+                completion(true, error)
+            } else {
+                completion(false, error)
             }
         }
     }
@@ -118,7 +132,7 @@ class OTMClient {
             }
             
             let newData = data.subdata(in: 5..<data.count)
-            
+            print(String(data: newData, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(LoginResponse.self, from: newData)
@@ -128,8 +142,15 @@ class OTMClient {
                     completion(true,nil)
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(false,error)
+                do {
+                    let errorObject = try decoder.decode(OTMResponse.self, from: newData)
+                    DispatchQueue.main.async {
+                        completion(false,errorObject)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(false,error)
+                    }
                 }
             }
         }

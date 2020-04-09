@@ -18,22 +18,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        OTMClient.login(username: userNameTextField.text ?? "",
-                        password: passwordTextField.text ?? "",
-             completion: handerLogin(success:error:))
+        if userNameTextField.text == "" || passwordTextField.text == "" {
+            showAlert("Plase input Email and Password")
+        } else {
+            OTMClient.login(username: userNameTextField.text ?? "",
+                                   password: passwordTextField.text ?? "",
+                        completion: handerLogin(success:error:))
+        }
+       
     }
     
     func handerLogin(success: Bool, error: Error?) {
         if success {
-            print("success")
             performSegue(withIdentifier: K.Segue.mainMap, sender: nil)
         } else {
-            print("error")
+            showAlert(error?.localizedDescription ?? "Please try again")
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
+    }
+    
+    func showAlert(_ message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
     
 }

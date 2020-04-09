@@ -27,7 +27,11 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
         let long = mapView.annotations[0].coordinate.longitude
         
         if let mediaURl = urlTextField.text {
+            if MyLocation.myLocation == nil {
             OTMClient.createNewStudentLocation(mapString: newLocation, mediaURL: mediaURl, latitude: lat, longtitude: long, completion: handlerCreateNew(success:error:))
+            } else {
+                OTMClient.updateStudentLocation(mapString: newLocation, mediaURL: mediaURl, latitude: lat, longtitude: long, completion: handlerCreateNew(success:error:))
+            }
         } else {
             let message = "Please enter your URL!"
             showAlert(message: message)
@@ -50,11 +54,6 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
         } else {
             showAlert(message: "Something goes wrong")
         }
-    }
-    
-    func setNewLocation(location: MKPointAnnotation) {
-       // newStudentLocation?.longitude = 0.0
-           // location.coordinate.longitude
     }
     
     func updatePinMapView() {

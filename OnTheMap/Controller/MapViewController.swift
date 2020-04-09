@@ -20,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = mapViewDelegate
         super.viewDidLoad()
         updateRequest()
+        subscribeNotificationCenter()
     }
     
     func updateRequest() {

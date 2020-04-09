@@ -9,9 +9,15 @@
 import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,8 +29,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let firstName = StudentModel.student[indexPath.row].firstName
         let lastName = StudentModel.student[indexPath.row].lastName
+        let detail = StudentModel.student[indexPath.row].mapString
         cell.textLabel?.text = "\(firstName)  \(lastName)"
-        cell.imageView?.image = UIImage(named: "icon_world")
+        cell.detailTextLabel?.text = detail
+        cell.imageView?.image = UIImage(named: "icon_pin")
         
         return cell
     }

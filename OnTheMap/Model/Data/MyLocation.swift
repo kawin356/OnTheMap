@@ -9,5 +9,5 @@
 import Foundation
 
 struct MyLocation {
-    static var location: String = ""
+    static var myLocation: Student?
 }

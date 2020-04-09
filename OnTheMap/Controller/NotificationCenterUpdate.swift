@@ -10,7 +10,7 @@ import UIKit
 
 extension MapViewController {
     
-    func subscribe() {
+    func subscribeNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(updatePin), name: Notification.Name(K.NotificationCenter.updateName), object: nil)
     }
     

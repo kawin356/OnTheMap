@@ -19,18 +19,35 @@ class TabbarViewController: UITabBarController {
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
-        //        let vc = selectedViewController as! MapViewController
-        //        vc.pinStudentOnMap()
+        NotificationCenter.default.post(name: Notification.Name(K.NotificationCenter.updateName), object: nil)
+        
     }
     
     @IBAction func addLocationButtonPressed(_ sender: UIBarButtonItem) {
-        let textShow = "You Already posted Student location are you sure to replace it ?"
-        showAlert(textShow) {
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.editMyPin) {
-                self.present(vc, animated: true, completion: nil)
+        if checkAlreadyPinLocation() {
+            let textShow = "You Already posted Student location are you sure to replace it ?"
+            showAlert(textShow) {
+                self.goToCreatePin()
+            }
+        } else {
+            goToCreatePin()
+        }
+    }
+    
+    func goToCreatePin() {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.editMyPin) {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func checkAlreadyPinLocation() -> Bool {
+        for check in StudentModel.student {
+            if OTMClient.Auth.accontKey == check.uniqueKey {
+                MyLocation.myLocation = check
+                return true
             }
         }
-        
+        return false
     }
     
     func showAlert(_ message: String, completion: @escaping () -> Void) {

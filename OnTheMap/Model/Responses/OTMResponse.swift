@@ -18,3 +18,7 @@ extension OTMResponse: LocalizedError {
         return error
     }
 }
+
+struct updateResponse: Codable {
+    let updatedAt: String
+}
