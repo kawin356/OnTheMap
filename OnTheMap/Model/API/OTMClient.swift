@@ -42,8 +42,6 @@ class OTMClient {
         }
     }
     
-    
-    
     class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
@@ -77,15 +75,12 @@ class OTMClient {
         request.httpMethod = ResponseType.self == updateResponse.self ? "PUT" : "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
-                
-        //print(String(data: request.httpBody!, encoding: .utf8)!)
-        
+                        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 completion(nil, error)
                 return
             }
-            print(String(data: data, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(ResponseType.self, from: data)
@@ -156,9 +151,7 @@ class OTMClient {
         task.resume()
     }
     
-    
     class func login(username: String, password: String, completion: @escaping (Bool,Error?) -> Void) {
-        
         var request = URLRequest(url: Endpoint.login.url)
         let body = LoginRequest(username: username, password: password)
         request.httpMethod = "POST"
@@ -174,7 +167,6 @@ class OTMClient {
             }
             
             let newData = data.subdata(in: 5..<data.count)
-            print(String(data: newData, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(LoginResponse.self, from: newData)

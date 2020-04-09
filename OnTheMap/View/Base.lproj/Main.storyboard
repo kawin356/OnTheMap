@@ -519,7 +519,7 @@
                                 <rect key="frame" x="117" y="735" width="180" height="56"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="NkL-eF-TWE"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="NkL-eF-TWE"/>
                                     <constraint firstAttribute="height" constant="56" id="qn9-R0-fdx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>

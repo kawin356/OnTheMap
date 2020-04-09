@@ -30,6 +30,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let firstName = StudentModel.student[indexPath.row].firstName
         let lastName = StudentModel.student[indexPath.row].lastName
         let detail = StudentModel.student[indexPath.row].mapString
+        
         cell.textLabel?.text = "\(firstName)  \(lastName)"
         cell.detailTextLabel?.text = detail
         cell.imageView?.image = UIImage(named: "icon_pin")

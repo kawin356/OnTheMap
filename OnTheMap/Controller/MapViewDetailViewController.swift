@@ -29,7 +29,6 @@ class MapViewDetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     func showLocation() {
-        
         let lat = CLLocationDegrees(selectedStudent!.latitude)
         let long = CLLocationDegrees(selectedStudent!.longitude)
         
@@ -44,16 +43,11 @@ class MapViewDetailViewController: UIViewController, MKMapViewDelegate {
         let last = selectedStudent!.lastName
         let mediaURL = selectedStudent!.mediaURL
         
-        // Here we create the annotation and set its coordiate, title, and subtitle properties
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "\(first) \(last)"
         annotation.subtitle = mediaURL
         
         mapView.addAnnotation(annotation)
-        
-        
-        
     }
-    
 }

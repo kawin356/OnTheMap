@@ -24,11 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             showAlert("Plase input Email and Password")
             activityIndicator.stopAnimating()
         } else {
-            OTMClient.login(username: userNameTextField.text ?? "",
-                                   password: passwordTextField.text ?? "",
-                        completion: handerLogin(success:error:))
+            OTMClient.login(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "", completion: handerLogin(success:error:))
         }
-       
     }
     
     func handerLogin(success: Bool, error: Error?) {
