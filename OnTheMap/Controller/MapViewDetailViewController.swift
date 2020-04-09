@@ -33,11 +33,13 @@ class MapViewDetailViewController: UIViewController, MKMapViewDelegate {
         let lat = CLLocationDegrees(selectedStudent!.latitude)
         let long = CLLocationDegrees(selectedStudent!.longitude)
         
+        //Set zoom to pin
         let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, long)
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let span = MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         self.mapView.setRegion(region, animated: true)
         
+        //add detial
         let first = selectedStudent!.firstName
         let last = selectedStudent!.lastName
         let mediaURL = selectedStudent!.mediaURL

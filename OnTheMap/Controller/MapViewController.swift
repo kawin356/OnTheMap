@@ -34,7 +34,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func handlerStudentLocation(success: Bool, error: Error?) {
         if success == true {
             pinStudentOnMap()
+        } else {
+            showAlert(error?.localizedDescription ?? "Cannot Load Data")
         }
+    }
+    
+    func showAlert(_ message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
@@ -42,10 +50,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
         
     func pinStudentOnMap() {
-        
         var annotations = [MKPointAnnotation]()
-        
-
         
         for data in StudentModel.student {
             
@@ -70,8 +75,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             // Finally we place the annotation in an array of annotations.
             annotations.append(annotation)
         }
-        
-        
         // When the array is complete, we add the annotations to the map.
         self.mapView.addAnnotations(annotations)
     }

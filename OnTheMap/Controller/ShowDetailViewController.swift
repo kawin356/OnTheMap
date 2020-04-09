@@ -24,7 +24,6 @@ class ShowDetailViewController: UIViewController {
     
     @IBAction func findLocationButtonPressed(_ sender: UIButton) {
         let mapDetailVC = storyboard?.instantiateViewController(withIdentifier: K.Storyboard.showMapDetail) as! MapViewDetailViewController
-        
         mapDetailVC.selectedStudent = selectedStudent
         
         present(mapDetailVC, animated: true, completion: nil)

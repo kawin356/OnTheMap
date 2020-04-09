@@ -61,17 +61,20 @@
                                 <rect key="frame" x="66.5" y="471" width="281" height="46"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="TBA-zz-lDX">
-                                        <rect key="frame" x="17" y="8" width="241.5" height="30"/>
+                                        <rect key="frame" x="17" y="8" width="246" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an accout?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3L-Wf-Ih7">
-                                                <rect key="frame" x="0.0" y="0.0" width="169.5" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an accout ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3L-Wf-Ih7">
+                                                <rect key="frame" x="0.0" y="0.0" width="174" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5B-9x-uSQ">
-                                                <rect key="frame" x="193.5" y="0.0" width="48" height="30"/>
+                                                <rect key="frame" x="198" y="0.0" width="48" height="30"/>
                                                 <state key="normal" title="Signup"/>
+                                                <connections>
+                                                    <action selector="signupOnWeb:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XOE-OW-GOs"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -82,6 +85,10 @@
                                     <constraint firstAttribute="height" constant="46" id="rpo-Ky-ERP"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1tM-vl-Y0T">
+                                <rect key="frame" x="197" y="554" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -102,6 +109,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="1tM-vl-Y0T" id="KP3-sn-btb"/>
                         <outlet property="passwordTextField" destination="hx8-8x-3yF" id="n80-Yx-yH8"/>
                         <outlet property="userNameTextField" destination="ceR-gL-Jpp" id="YhM-tg-lVA"/>
                         <segue destination="CCf-tB-S58" kind="show" identifier="MainShowMapPage" id="KYI-TD-3Wo"/>
@@ -111,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="-151" y="248"/>
         </scene>
-        <!--Item-->
+        <!--Map View Controller-->
         <scene sceneID="ncV-N7-uUG">
             <objects>
                 <viewController storyboardIdentifier="MainShowMapPage" modalPresentationStyle="fullScreen" id="7sm-h2-bRS" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,7 +140,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jj5-JW-a68"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Cj4-YE-vNv"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-deselected" selectedImage="icon_mapview-selected" id="Cj4-YE-vNv"/>
                     <navigationItem key="navigationItem" id="1pg-5F-x1N">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Z6e-Ua-7De">
                             <connections>
@@ -356,7 +364,7 @@
             </objects>
             <point key="canvasLocation" x="1719" y="999"/>
         </scene>
-        <!--Item-->
+        <!--Table View Controller-->
         <scene sceneID="0uW-NW-jdk">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="GV3-Wj-jXD" customClass="TableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -408,7 +416,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ap4-Uo-knq"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="iqz-So-upi"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="iqz-So-upi"/>
                     <navigationItem key="navigationItem" id="rIu-0z-BoS">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="t5P-3R-bYc"/>
                         <rightBarButtonItems>
@@ -439,7 +447,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0jb-iD-8d8">
-                                <rect key="frame" x="50" y="326" width="314" height="50"/>
+                                <rect key="frame" x="60" y="326" width="294" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Pvz-OK-gJQ"/>
                                 </constraints>
@@ -473,11 +481,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0jb-iD-8d8" firstAttribute="centerX" secondItem="fCh-Fz-TsK" secondAttribute="centerX" id="8oU-lZ-d99"/>
-                            <constraint firstItem="fCh-Fz-TsK" firstAttribute="trailing" secondItem="0jb-iD-8d8" secondAttribute="trailing" constant="50" id="9x0-oB-3mb"/>
+                            <constraint firstItem="fCh-Fz-TsK" firstAttribute="trailing" secondItem="0jb-iD-8d8" secondAttribute="trailing" constant="60" id="9x0-oB-3mb"/>
                             <constraint firstItem="VtV-LY-zx3" firstAttribute="top" secondItem="fCh-Fz-TsK" secondAttribute="top" constant="60" id="BL5-8f-rbC"/>
                             <constraint firstItem="0jb-iD-8d8" firstAttribute="top" secondItem="41v-KM-TJI" secondAttribute="bottom" constant="35" id="Lcv-g5-l6p"/>
                             <constraint firstItem="x3h-tG-Kbu" firstAttribute="centerX" secondItem="fCh-Fz-TsK" secondAttribute="centerX" id="TwB-kB-xD0"/>
-                            <constraint firstItem="0jb-iD-8d8" firstAttribute="leading" secondItem="fCh-Fz-TsK" secondAttribute="leading" constant="50" id="UF3-JE-FWO"/>
+                            <constraint firstItem="0jb-iD-8d8" firstAttribute="leading" secondItem="fCh-Fz-TsK" secondAttribute="leading" constant="60" id="UF3-JE-FWO"/>
                             <constraint firstItem="x3h-tG-Kbu" firstAttribute="top" secondItem="0jb-iD-8d8" secondAttribute="bottom" constant="170" id="XoZ-8A-1NQ"/>
                             <constraint firstItem="VtV-LY-zx3" firstAttribute="centerX" secondItem="fCh-Fz-TsK" secondAttribute="centerX" id="bXr-7g-04d"/>
                             <constraint firstItem="fCh-Fz-TsK" firstAttribute="trailing" secondItem="41v-KM-TJI" secondAttribute="trailing" constant="60" id="ib7-8v-wLs"/>
@@ -602,6 +610,10 @@
     </scenes>
     <resources>
         <image name="icon_addpin" width="24" height="24"/>
+        <image name="icon_listview-deselected" width="75" height="50"/>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-deselected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="icon_refresh" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>

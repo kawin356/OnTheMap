@@ -14,12 +14,16 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
+    let mapViewDelegate = MapViewDelegate()
+    
     var pin:MKMapItem?
     var newLocation: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = mapViewDelegate
         updatePinMapView()
+        
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
@@ -52,9 +56,11 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
                 self.present(vc, animated: true, completion: nil)
             }
         } else {
-            showAlert(message: "Something goes wrong")
+            showAlert(message: error?.localizedDescription ?? "Canot Save your Location")
         }
     }
+    
+    
     
     func updatePinMapView() {
         let searchRequest = MKLocalSearch.Request()

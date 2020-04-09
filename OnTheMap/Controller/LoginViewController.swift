@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -18,8 +19,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        activityIndicator.startAnimating()
         if userNameTextField.text == "" || passwordTextField.text == "" {
             showAlert("Plase input Email and Password")
+            activityIndicator.stopAnimating()
         } else {
             OTMClient.login(username: userNameTextField.text ?? "",
                                    password: passwordTextField.text ?? "",
@@ -29,6 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     func handerLogin(success: Bool, error: Error?) {
+        activityIndicator.stopAnimating()
         if success {
             performSegue(withIdentifier: K.Segue.mainMap, sender: nil)
         } else {
@@ -46,5 +50,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         present(alertVC, animated: true, completion: nil)
     }
     
+    @IBAction func signupOnWeb(_ sender: UIButton) {
+        let url = OTMClient.Endpoint.signupOnWeb.url
+        UIApplication.shared.open(url)
+    }
 }
 

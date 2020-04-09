@@ -9,6 +9,7 @@
 import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,7 +27,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.TableView.reuseableCell, for: indexPath)
-        
         let firstName = StudentModel.student[indexPath.row].firstName
         let lastName = StudentModel.student[indexPath.row].lastName
         let detail = StudentModel.student[indexPath.row].mapString
@@ -39,7 +39,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: K.Storyboard.showDetail) as! ShowDetailViewController
-        
         detailVC.selectedStudent = StudentModel.student[indexPath.row]
         
         present(detailVC, animated: true, completion: nil)

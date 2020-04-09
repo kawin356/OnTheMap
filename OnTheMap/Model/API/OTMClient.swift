@@ -23,6 +23,8 @@ class OTMClient {
         case getStudentLocation
         case createNewlocation
         case updateLocation(String)
+        case deleteSession
+        case signupOnWeb
         
         var stringValue: String {
             switch self {
@@ -30,7 +32,8 @@ class OTMClient {
             case .getStudentLocation: return Endpoint.baseURL + "/StudentLocation?order=-updatedAt"
             case .createNewlocation: return Endpoint.baseURL + "/StudentLocation"
             case .updateLocation(let objectId): return Endpoint.baseURL + "/StudentLocation/\(objectId)"
-                
+            case .deleteSession: return Endpoint.baseURL + "/session"
+            case .signupOnWeb: return "https://auth.udacity.com/sign-in"
             }
         }
         
@@ -54,8 +57,15 @@ class OTMClient {
                     completion(responseObject,nil)
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(nil, error)
+                do {
+                    let errorObject = try decoder.decode(OTMResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(nil,errorObject)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil,error)
+                    }
                 }
             }
         }
@@ -83,8 +93,15 @@ class OTMClient {
                     completion(responseObject,nil)
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(nil,error)
+                do {
+                    let errorObject = try decoder.decode(OTMResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(nil,errorObject)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil,error)
+                    }
                 }
             }
         }
@@ -108,12 +125,35 @@ class OTMClient {
         let body = StudentLocationRequest(uniqueKey: Auth.accontKey, firstName: K.MyName.firstName, lastName: K.MyName.lastName, mapString: mapString, mediaURL: mediaURL, latitude: latitude, longitude: longtitude)
         
         taskForPOSTPUTRequest(url: Endpoint.updateLocation(Auth.objectId).url, responseType: updateResponse.self, body: body) { (response, error) in
-            if let response = response {
+            if response != nil {
                 completion(true, error)
             } else {
                 completion(false, error)
             }
         }
+    }
+    
+    class func logout() {
+        var request = URLRequest(url: Endpoint.deleteSession.url)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+          if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+          request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                return
+            }
+            Auth.accontKey = ""
+            Auth.objectId = ""
+            Auth.session = ""
+        }
+        task.resume()
     }
     
     
@@ -127,7 +167,9 @@ class OTMClient {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
                 return
             }
             

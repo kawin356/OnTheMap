@@ -15,26 +15,26 @@ class TabbarViewController: UITabBarController {
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
+        OTMClient.logout()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: Notification.Name(K.NotificationCenter.updateName), object: nil)
-        
     }
     
     @IBAction func addLocationButtonPressed(_ sender: UIBarButtonItem) {
         if checkAlreadyPinLocation() {
             let textShow = "You Already posted Student location are you sure to replace it ?"
             showAlert(textShow) {
-                self.goToCreatePin()
+                self.goToCreatePinViewController()
             }
         } else {
-            goToCreatePin()
+            goToCreatePinViewController()
         }
     }
     
-    func goToCreatePin() {
+    func goToCreatePinViewController() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.editMyPin) {
             self.present(vc, animated: true, completion: nil)
         }
