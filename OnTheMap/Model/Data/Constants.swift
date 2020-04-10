@@ -31,5 +31,7 @@ struct K {
         static let showMapDetail = "MapViewDetailViewController"
         static let mainShowMap = "MainShowMapPage"
         static let rootView = "RootView"
+        static let main = "Main"
+        static let login = "loginView"
     }
 }

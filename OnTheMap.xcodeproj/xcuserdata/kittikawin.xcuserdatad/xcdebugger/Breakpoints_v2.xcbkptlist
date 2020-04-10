@@ -14,8 +14,8 @@
             filePath = "OnTheMap/Controller/SubmitPinViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "updatePinMapView()"
             landmarkType = "7">
          </BreakpointContent>

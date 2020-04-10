@@ -39,9 +39,21 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: K.Storyboard.showDetail) as! ShowDetailViewController
-        detailVC.selectedStudent = StudentModel.student[indexPath.row]
-        
-        present(detailVC, animated: true, completion: nil)
+            let app = UIApplication.shared
+            var toOpen = StudentModel.student[indexPath.row].mediaURL 
+            if !toOpen.hasPrefix("http") {
+                toOpen = "http://\(toOpen)"
+            }
+                app.open(URL(string: toOpen)!, options: [:], completionHandler: { (isSuccess) in
+                        if (isSuccess == false) {
+                            self.showAlert("Cannot open this URL maybe It not have Http,Https")
+                        }
+                    })
+    }
+    
+    private func showAlert(_ message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }

@@ -13,6 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     let textFieldDelegate = TextFieldDelegate()
     
@@ -23,17 +24,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        activityIndicator.startAnimating()
+        uiLoading(show: true)
         if userNameTextField.text == "" || passwordTextField.text == "" {
             showAlert("Plase input Email and Password")
-            activityIndicator.stopAnimating()
+            uiLoading(show: false)
         } else {
             OTMClient.login(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "", completion: handerLogin(success:error:))
         }
     }
     
     private func handerLogin(success: Bool, error: Error?) {
-        activityIndicator.stopAnimating()
+        uiLoading(show: false)
         if success {
             performSegue(withIdentifier: K.Segue.mainMap, sender: nil)
         } else {
@@ -50,6 +51,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBAction func signupOnWeb(_ sender: UIButton) {
         let url = OTMClient.Endpoint.signupOnWeb.url
         UIApplication.shared.open(url)
+    }
+    
+    func uiLoading(show enable: Bool) {
+        userNameTextField.isEnabled = !enable
+        passwordTextField.isEnabled = !enable
+        loginButton.isEnabled = !enable
+        
+        if enable {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 }
 

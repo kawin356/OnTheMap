@@ -16,7 +16,19 @@ class TabbarViewController: UITabBarController {
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         OTMClient.logout()
-        dismiss(animated: true, completion: nil)
+        goToLogin()
+    }
+    
+    func goToLogin() {
+        let vc = UIStoryboard(name: K.Storyboard.main, bundle: nil)
+            .instantiateViewController(identifier: K.Storyboard.login)
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+            let window = sceneDelegate.window {
+            window.rootViewController = vc
+            UIView.transition(with: window, duration: 0.25,
+            options: .transitionCrossDissolve,
+            animations: nil, completion: nil)
+        }
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {

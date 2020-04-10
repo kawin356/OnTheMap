@@ -48,12 +48,22 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
         present(alertVC, animated: true, completion: nil)
     }
     
+    func goToMain() {
+        let vc = UIStoryboard(name: K.Storyboard.main, bundle: nil)
+            .instantiateViewController(identifier: K.Storyboard.rootView)
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+            let window = sceneDelegate.window {
+            window.rootViewController = vc
+            UIView.transition(with: window, duration: 0.25,
+            options: .transitionCrossDissolve,
+            animations: nil, completion: nil)
+        }
+    }
+    
     private func handlerCreateNew(success: Bool, error: Error?) {
         if success {
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.rootView) {
-                NotificationCenter.default.post(name: Notification.Name(K.NotificationCenter.updateName), object: nil)
-                self.present(vc, animated: true, completion: nil)
-            }
+            goToMain()
+            NotificationCenter.default.post(name: Notification.Name(K.NotificationCenter.updateName), object: nil)
         } else {
             showAlert(message: error?.localizedDescription ?? "Canot Save your Location")
         }
@@ -76,8 +86,8 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
                 self.mapView.removeAnnotations(annotations)
                 
             if  placeMarks.count == 1 {
-                let latitude = placeMarks.first?.location?.coordinate.latitude
-                let longitude = placeMarks.first?.location?.coordinate.latitude
+                let latitude = placeMarks[0].location?.coordinate.latitude
+                let longitude = placeMarks[0].location?.coordinate.longitude
                 
                 guard let lat = latitude, let long = longitude else {
                     self.showAlert(message: "Cannot Pin in this location")
@@ -93,7 +103,7 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
                 
                 //Zooming in on annotation
                 let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, long)
-                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                let span = MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
 

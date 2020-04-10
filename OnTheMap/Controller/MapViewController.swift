@@ -12,7 +12,7 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-        
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         updateRequest()
@@ -20,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func updateRequest() {
+        activityIndicator.startAnimating()
         if !mapView.annotations.isEmpty {
             mapView.removeAnnotations(mapView.annotations)
         }
@@ -33,6 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         } else {
             showAlert(error?.localizedDescription ?? "Cannot Load Data")
         }
+        activityIndicator.stopAnimating()
     }
     
     private func showAlert(_ message: String) {
