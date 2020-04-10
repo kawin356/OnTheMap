@@ -61,29 +61,40 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     }
     
     func updatePinMapView() {
-        let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = newLocation
-        let activeSearch = MKLocalSearch(request: searchRequest)
-        activeSearch.start { (response, error) in
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(newLocation) { (response, error) in
             guard let response = response else { return }
                 //Clear annotations
                 let annotations = self.mapView.annotations
                 self.mapView.removeAnnotations(annotations)
                 
-                let latitude = response.boundingRegion.center.latitude
-                let longitude = response.boundingRegion.center.longitude
+            if  response.count != 1 {
+                let latitude = response[0].location?.coordinate.latitude
+                let longitude = response[0].location?.coordinate.latitude
+                
+                guard let lat = latitude, let long = longitude else {
+                    self.showAlert(message: "Cannot Pin in this location")
+                    return
+                }
+
                 
                 //Create annotation
                 let annotation = MKPointAnnotation()
                 annotation.title = self.newLocation
-                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+                annotation.coordinate = CLLocationCoordinate2DMake(lat, long)
                 self.mapView.addAnnotation(annotation)
                 
                 //Zooming in on annotation
-                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, long)
                 let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
+                
+            } else if response.count > 1 {
+                self.showAlert(message: "Found many location. Plase input specifically location")
+            } else if response.count == 0 {
+                self.showAlert(message: "Your location not found")
+            }
         }
     }
 }

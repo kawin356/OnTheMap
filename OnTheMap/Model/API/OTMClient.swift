@@ -29,7 +29,7 @@ class OTMClient {
         var stringValue: String {
             switch self {
             case .login: return Endpoint.baseURL + "/session"
-            case .getStudentLocation: return Endpoint.baseURL + "/StudentLocation?order=-updatedAt"
+            case .getStudentLocation: return Endpoint.baseURL + "/StudentLocation?order=-updatedAt&limit=100"
             case .createNewlocation: return Endpoint.baseURL + "/StudentLocation"
             case .updateLocation(let objectId): return Endpoint.baseURL + "/StudentLocation/\(objectId)"
             case .deleteSession: return Endpoint.baseURL + "/session"
