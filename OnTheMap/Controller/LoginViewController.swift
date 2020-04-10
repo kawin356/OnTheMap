@@ -14,8 +14,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let textFieldDelegate = TextFieldDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameTextField.delegate = textFieldDelegate
+        passwordTextField.delegate = textFieldDelegate
     }
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -28,7 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-    func handerLogin(success: Bool, error: Error?) {
+    private func handerLogin(success: Bool, error: Error?) {
         activityIndicator.stopAnimating()
         if success {
             performSegue(withIdentifier: K.Segue.mainMap, sender: nil)
@@ -36,12 +40,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             showAlert(error?.localizedDescription ?? "Please try again")
         }
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-    }
-    
-    func showAlert(_ message: String) {
+
+    private func showAlert(_ message: String) {
         let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertVC, animated: true, completion: nil)

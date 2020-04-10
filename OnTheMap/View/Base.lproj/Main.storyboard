@@ -22,9 +22,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="13f-04-2XE"/>
-                                </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="Npc-mc-bSd">
                                 <rect key="frame" x="176" y="164" width="62" height="62"/>
@@ -39,9 +36,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="YAy-FT-UpZ"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2z-BB-vYv">
                                 <rect key="frame" x="30" y="631" width="354" height="56"/>
@@ -129,6 +123,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GgK-pk-bFF">
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7sm-h2-bRS" id="X1c-yp-rR4"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -223,7 +220,7 @@
                                             <constraint firstItem="TXL-hr-4lP" firstAttribute="centerX" secondItem="z3w-VK-r7X" secondAttribute="centerX" id="o0v-Wu-Qct"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter yout Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-1g-UMV">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your address location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-1g-UMV">
                                         <rect key="frame" x="0.0" y="258" width="414" height="258"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -301,15 +298,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1Dc-yz-VO8">
                                 <rect key="frame" x="0.0" y="314" width="414" height="494"/>
                                 <connections>
-                                    <outlet property="delegate" destination="7h9-r3-UHG" id="HXT-aA-Igw"/>
+                                    <outlet property="delegate" destination="7h9-r3-UHG" id="bQR-Jy-7b7"/>
                                 </connections>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot1-0a-2In">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
-                                    <navigationItem id="fbV-fg-tou">
-                                        <barButtonItem key="rightBarButtonItem" title="Close" id="o1M-JA-3mX"/>
-                                    </navigationItem>
+                                    <navigationItem id="fbV-fg-tou"/>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter link to shared" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JFF-y8-YMs">
@@ -336,6 +331,11 @@
                                     <action selector="submitButtonPressed:" destination="7h9-r3-UHG" eventType="touchUpInside" id="gqc-vh-RqD"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WIL-qM-Xwt">
+                                <rect key="frame" x="197" y="411" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.60784313729999995" green="0.10980392160000001" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -356,6 +356,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tks-It-UV6"/>
                     <connections>
+                        <outlet property="activityIndecator" destination="WIL-qM-Xwt" id="JGS-Xp-WtA"/>
                         <outlet property="mapView" destination="1Dc-yz-VO8" id="2ld-fi-hyd"/>
                         <outlet property="urlTextField" destination="JFF-y8-YMs" id="4S7-XL-x88"/>
                     </connections>
@@ -514,6 +515,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sTl-6N-8SL">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JsB-OQ-MuP" id="7YH-gp-Yq4"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPB-fZ-KGx">
                                 <rect key="frame" x="117" y="735" width="180" height="56"/>

@@ -34,13 +34,13 @@ class TabbarViewController: UITabBarController {
         }
     }
     
-    func goToCreatePinViewController() {
+    private func goToCreatePinViewController() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.editMyPin) {
             self.present(vc, animated: true, completion: nil)
         }
     }
     
-    func checkAlreadyPinLocation() -> Bool {
+    private func checkAlreadyPinLocation() -> Bool {
         for check in StudentModel.student {
             if OTMClient.Auth.accontKey == check.uniqueKey {
                 MyLocation.myLocation = check
@@ -50,7 +50,7 @@ class TabbarViewController: UITabBarController {
         return false
     }
     
-    func showAlert(_ message: String, completion: @escaping () -> Void) {
+    private func showAlert(_ message: String, completion: @escaping () -> Void) {
         let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (action) in
             completion()

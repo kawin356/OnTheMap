@@ -14,22 +14,25 @@ class PinLocationViewController: UIViewController {
     
     @IBOutlet weak var newLocationTextField: UITextField!
     
+    let textFieldDelegate = TextFieldDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        newLocationTextField.delegate = textFieldDelegate
     }
     
     @IBAction func findOnTheMap(_ sender: UIButton) {
         if newLocationTextField.text != "" {
             performSegue(withIdentifier: K.Segue.submitPin, sender: nil)
         } else {
-            alert(string: "Please input your location ! ")
+            showAlert("Please input your location ! ")
         }
     }
     
-    func alert(string: String){
-        let alert = UIAlertController(title: nil, message: string, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alert, sender: nil)
+    private func showAlert(_ message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

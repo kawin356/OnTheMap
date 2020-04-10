@@ -13,17 +13,16 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
-    
-    let mapViewDelegate = MapViewDelegate()
-    
+    @IBOutlet weak var activityIndecator: UIActivityIndicatorView!
+        
     var pin:MKMapItem?
-    var newLocation: String = ""
+    var newLocation: String!
+    let textFieldDelegate = TextFieldDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.delegate = mapViewDelegate
+        self.urlTextField.delegate = textFieldDelegate
         updatePinMapView()
-        
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
@@ -42,14 +41,14 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
         }
     }
     
-    func showAlert(message: String) {
+    private func showAlert(message: String) {
         let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let actionOverwrite = UIAlertAction(title: "OK", style: .default)
         alertVC.addAction(actionOverwrite)
         present(alertVC, animated: true, completion: nil)
     }
     
-    func handlerCreateNew(success: Bool, error: Error?) {
+    private func handlerCreateNew(success: Bool, error: Error?) {
         if success {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: K.Storyboard.rootView) {
                 NotificationCenter.default.post(name: Notification.Name(K.NotificationCenter.updateName), object: nil)
@@ -61,22 +60,30 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
     }
     
     func updatePinMapView() {
+        activityIndecator.startAnimating()
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(newLocation) { (response, error) in
-            guard let response = response else { return }
+        geoCoder.geocodeAddressString(newLocation) { (placeMarks, error) in
+            guard let placeMarks = placeMarks else {
+                if let error = error {
+                    self.showAlert(message: error.localizedDescription)
+                    self.activityIndecator.stopAnimating()
+                    return
+                }
+                return
+            }
                 //Clear annotations
                 let annotations = self.mapView.annotations
                 self.mapView.removeAnnotations(annotations)
                 
-            if  response.count != 1 {
-                let latitude = response[0].location?.coordinate.latitude
-                let longitude = response[0].location?.coordinate.latitude
+            if  placeMarks.count == 1 {
+                let latitude = placeMarks.first?.location?.coordinate.latitude
+                let longitude = placeMarks.first?.location?.coordinate.latitude
                 
                 guard let lat = latitude, let long = longitude else {
                     self.showAlert(message: "Cannot Pin in this location")
+                    self.activityIndecator.stopAnimating()
                     return
                 }
-
                 
                 //Create annotation
                 let annotation = MKPointAnnotation()
@@ -89,12 +96,30 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
                 let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
-                
-            } else if response.count > 1 {
-                self.showAlert(message: "Found many location. Plase input specifically location")
-            } else if response.count == 0 {
+
+            } else if placeMarks.count == 0 {
                 self.showAlert(message: "Your location not found")
             }
         }
+        self.activityIndecator.stopAnimating()
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
 }

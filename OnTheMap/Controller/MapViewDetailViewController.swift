@@ -12,14 +12,11 @@ import MapKit
 class MapViewDetailViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
-    let mapViewDelegate = MapViewDelegate()
-    
+        
     var selectedStudent: Student?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.delegate = mapViewDelegate
         
         showLocation()
     }
@@ -28,7 +25,7 @@ class MapViewDetailViewController: UIViewController, MKMapViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func showLocation() {
+    private func showLocation() {
         let lat = CLLocationDegrees(selectedStudent!.latitude)
         let long = CLLocationDegrees(selectedStudent!.longitude)
         
@@ -49,5 +46,46 @@ class MapViewDetailViewController: UIViewController, MKMapViewDelegate {
         annotation.subtitle = mediaURL
         
         mapView.addAnnotation(annotation)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            let app = UIApplication.shared
+            if var toOpen = view.annotation?.subtitle! {
+                if !toOpen.hasPrefix("http") {
+                    toOpen = "http://\(toOpen)"
+                }
+                app.open(URL(string: toOpen)!, options: [:], completionHandler: { (isSuccess) in
+                        if (isSuccess == false) {
+                            self.showAlert("Cannot open this URL maybe It not have Http,Https")
+                        }
+                    }
+                )
+            }
+        }
+    }
+    
+    private func showAlert(_ message: String) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
 }

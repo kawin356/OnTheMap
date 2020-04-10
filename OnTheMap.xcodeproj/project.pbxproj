@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4388A2E22440837B005F31BA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388A2E12440837B005F31BA /* TextFieldDelegate.swift */; };
 		43997A72243DB3FB00008454 /* MyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A71243DB3FB00008454 /* MyLocation.swift */; };
 		43997A74243DC37A00008454 /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A73243DC37A00008454 /* ShowDetailViewController.swift */; };
 		43997A76243DC4A200008454 /* MapViewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A75243DC4A200008454 /* MapViewDetailViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4388A2E12440837B005F31BA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		43997A71243DB3FB00008454 /* MyLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocation.swift; sourceTree = "<group>"; };
 		43997A73243DC37A00008454 /* ShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		43997A75243DC4A200008454 /* MapViewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDetailViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				439D09CE243E36440023D6F4 /* MapViewDelegate.swift */,
 				43CA3A15243C3CC8000C9C9D /* AppDelegate.swift */,
 				43CA3A17243C3CC8000C9C9D /* SceneDelegate.swift */,
+				4388A2E12440837B005F31BA /* TextFieldDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				43CA3A35243C478C000C9C9D /* LoginResponse.swift in Sources */,
 				439D09DA243E601A0023D6F4 /* NotificationCenterUpdate.swift in Sources */,
 				439D09D1243E40660023D6F4 /* CreateNewLocationResponse.swift in Sources */,
+				4388A2E22440837B005F31BA /* TextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
