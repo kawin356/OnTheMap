@@ -10,21 +10,17 @@ import UIKit
 
 class TabbarViewController: UITabBarController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         OTMClient.logout()
         goToLogin()
     }
     
     func goToLogin() {
-        let vc = UIStoryboard(name: K.Storyboard.main, bundle: nil)
+        let viewController = UIStoryboard(name: K.Storyboard.main, bundle: nil)
             .instantiateViewController(identifier: K.Storyboard.login)
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
             let window = sceneDelegate.window {
-            window.rootViewController = vc
+            window.rootViewController = viewController
             UIView.transition(with: window, duration: 0.25,
             options: .transitionCrossDissolve,
             animations: nil, completion: nil)

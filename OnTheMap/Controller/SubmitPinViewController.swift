@@ -86,8 +86,8 @@ class SubmitPinViewController: UIViewController, MKMapViewDelegate{
                 self.mapView.removeAnnotations(annotations)
                 
             if  placeMarks.count == 1 {
-                let latitude = placeMarks[0].location?.coordinate.latitude
-                let longitude = placeMarks[0].location?.coordinate.longitude
+                let latitude = placeMarks.first?.location?.coordinate.latitude
+                let longitude = placeMarks.first?.location?.coordinate.longitude
                 
                 guard let lat = latitude, let long = longitude else {
                     self.showAlert(message: "Cannot Pin in this location")

@@ -41,12 +41,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             showAlert(error?.localizedDescription ?? "Please try again")
         }
     }
-
-    private func showAlert(_ message: String) {
-        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
     
     @IBAction func signupOnWeb(_ sender: UIButton) {
         let url = OTMClient.Endpoint.signupOnWeb.url

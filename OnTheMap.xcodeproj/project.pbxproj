@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43306D0E244159AC0026991E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43306D0D244159AC0026991E /* Helper.swift */; };
 		4388A2E22440837B005F31BA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388A2E12440837B005F31BA /* TextFieldDelegate.swift */; };
 		43997A72243DB3FB00008454 /* MyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997A71243DB3FB00008454 /* MyLocation.swift */; };
 		439D09D1243E40660023D6F4 /* CreateNewLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D09D0243E40660023D6F4 /* CreateNewLocationResponse.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43306D0D244159AC0026991E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4388A2E12440837B005F31BA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		43997A71243DB3FB00008454 /* MyLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocation.swift; sourceTree = "<group>"; };
 		439D09D0243E40660023D6F4 /* CreateNewLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewLocationResponse.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43306D0C2441599B0026991E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				43306D0D244159AC0026991E /* Helper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		439D09D2243E449F0023D6F4 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +129,7 @@
 		43CA3A29243C3CF2000C9C9D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				43306D0C2441599B0026991E /* Helper */,
 				439D09D2243E449F0023D6F4 /* Delegate */,
 				43CA3A19243C3CC8000C9C9D /* LoginViewController.swift */,
 				43CA3A49243D9E71000C9C9D /* TabbarViewController.swift */,
@@ -261,6 +272,7 @@
 				43CA3A31243C45E0000C9C9D /* OTMClient.swift in Sources */,
 				43CA3A37243C59E0000C9C9D /* OTMResponse.swift in Sources */,
 				43997A72243DB3FB00008454 /* MyLocation.swift in Sources */,
+				43306D0E244159AC0026991E /* Helper.swift in Sources */,
 				43CA3A42243CE8B7000C9C9D /* StudentLocationRequest.swift in Sources */,
 				43CA3A39243C5C2D000C9C9D /* MapViewController.swift in Sources */,
 				43CA3A33243C4716000C9C9D /* LoginRequest.swift in Sources */,

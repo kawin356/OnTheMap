@@ -29,12 +29,6 @@ class PinLocationViewController: UIViewController {
         }
     }
     
-    private func showAlert(_ message: String) {
-        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segue.submitPin {
             let VC = segue.destination as! SubmitPinViewController

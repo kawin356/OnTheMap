@@ -50,10 +50,4 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         }
                     })
     }
-    
-    private func showAlert(_ message: String) {
-        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
 }

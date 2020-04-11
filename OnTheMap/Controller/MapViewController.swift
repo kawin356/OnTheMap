@@ -37,11 +37,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         activityIndicator.stopAnimating()
     }
     
-    private func showAlert(_ message: String) {
-        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
+
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
