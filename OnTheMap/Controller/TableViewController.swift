@@ -46,7 +46,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
                 app.open(URL(string: toOpen)!, options: [:], completionHandler: { (isSuccess) in
                         if (isSuccess == false) {
-                            self.showAlert("Cannot open this URL maybe It not have Http,Https")
+                            self.showAlert("Cannot open this URL maybe It not have Http, Https")
                         }
                     })
     }
