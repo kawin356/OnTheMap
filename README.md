@@ -85,6 +85,21 @@ delete session when you have to logout
 
 `https://onthemap-api.udacity.com/v1/session`
 
+## ScreenShot
+
+### Login
+![](/ScreenShot/login.gif)
+
+### Link URL
+![](/ScreenShot/linkURL.gif)
+
+### Pin Location
+![](/ScreenShot/owLocation.gif)
+
+### Login Error Hanldling
+![](/ScreenShot/loginfail.gif)
+
+## License
 
 MIT License
 
